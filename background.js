@@ -27,7 +27,6 @@ chrome.webRequest.onBeforeRequest.addListener(
                 if (protocal == 'http' || protocal == 'https') {
                     if (q && path.includes(q)) {
                         redirectUrl = 'data:text/javascript;charset=UTF-8;base64,' + btoa(`;`);
-                        alert('1111111');
                         new Notification('发现蜜罐！');
                     }
                 }
