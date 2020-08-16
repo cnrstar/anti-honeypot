@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif'
+        }
+        .box {
+            width: 213px;
+            height: 250px;
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        p {
+            text-align: center;
+            font-size: 16px;
+            margin: 3px 0;
+        }
+
+        #save {
+            display: inline-block;
+            padding: 4px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #save:hover {
+             background-color: #d9d9d9;
+        }
+        textarea {
+            resize: none;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>请输入需要拦截字段</p>
+        <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+        <button id="save">保存</button>
+        <script src="popup.js"></script>
+    </div>
+</body>
+
+</html>
