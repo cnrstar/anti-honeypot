@@ -62,7 +62,7 @@ chrome.webRequest.onBeforeRequest.addListener(
                     if (q && targetPath.includes(q)) {
                         console.log(url);
                         redirectUrl = 'data:text/javascript;charset=UTF-8;base64,' + btoa(`;`);
-                        new Notification('发现蜜罐！');
+                        new Notification('发现蜜罐！' + '尝试访问' + 'targetDomain');
                     }
                 }
             }
