@@ -51,7 +51,7 @@ chrome.webRequest.onBeforeRequest.addListener(
         const targetPath = GetHostAndPath(url)[1]; //跨域或本域访问的目标路径
         const targetDomain = GetMainDomain(targetHost) //目标主域名
 
-        const WhiteList = ['baidu.com', 'qq.com', 'csdn.net', 'weibo.com', 'cnblogs.com'] //白名单
+        const WhiteList = ['baidu.com', 'qq.com', 'csdn.net', 'weibo.com', 'cnblogs.com','aliyun.com','ctrip.com','weibo.cn','iqiyi.com','163.com','126.com','51cto.com','taobao.com','sogou.com','iteye.com','58.com'] //白名单
         for (const WhiteSite of WhiteList) {
             if (mainDomain.includes(WhiteSite)) {
                 return;
