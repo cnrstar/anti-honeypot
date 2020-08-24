@@ -28,15 +28,16 @@ chrome.webRequest.onBeforeRequest.addListener(
             var result = new Array(host, path);
             return result
         }
-        //获取主域名
-        function GetMainDomain(host) {
-            var arrHost = host.split("."); //  a.b.c.baidu.com
-            var mainDomain = arrHost[arrHost.length - 2] + '.' + arrHost[arrHost.length - 1];
-            return mainDomain;
+        //根据url获取主域名
+        function get_domain(url){
+            var domain;
+            var re_domain=/([a-zA-Z0-9-]+)(.com\b|.net\b|.edu\b|.miz\b|.biz\b|.cn\b|.cc\b|.org\b){1,}/g;
+            domain=url.match(re_domain);
+            return domain[0];
         }
         //判断host是否在黑名单内
         function inBlackList(host) {
-            //黑名单host来自长亭D-sensor的溯源api，共75个
+            //黑名单host来自长亭D-sensor的溯源api，共47个
             const BlackList = ["account.itpub.net", "accounts.ctrip.com", "ajax.58pic.com", "api.csdn.net", "api.ip.sb", "api.passport.pptv.com", "bbs.zhibo8.cc", "bit.ly", "blog.csdn.net", "blog.itpub.net", "c.v.qq.com", "chinaunix.net", "cmstool.youku.com", "comment.api.163.com", "databack.dangdang.com", "dimg01.c-ctrip.com", "down2.uc.cn", "github.com", "hd.huya.com", "home.51cto.com", "home.ctfile.com", "home.zhibo8.cc", "hudong.vip.youku.com", "i.jrj.com.cn", "iask.sina.com.cn", "itunes.apple.com", "m.ctrip.com", "m.game.weibo.cn", "mapp.jrj.com.cn", "my.zol.com.cn","passport.ctrip.com", "passport.game.renren.com", "passport.iqiyi.com", "playbill.api.mgtv.com", "renren.com", "skylink.io", "u.faloo.com", "ucenter.51cto.com", "v.huya.com", "v2.sohu.com", "vote2.pptv.com", "wap.sogou.com", "webapi.ctfile.com", "weibo.com", "www.58pic.com", "www.iqiyi.com", "www.iteye.com", "www.zbj.com", "www.cndns.com", "mozilla.github.io", "www.sitestar.cn", "api.fastadmin.net", "m.site.baidu.com", "restapi.amap.com", "login.sina.com.cn", "now.qq.com", "message.dangdang.com", "musicapi.taihe.com", "api-live.iqiyi.com", "api.m.jd.com", "tie.163.com", "pcw-api.iqiyi.com", "so.v.ifeng.com", "passport.baidu.com", "wz.cnblogs.com", "passport.cnblogs.com", "hzs14.cnzz.com", "mths.be", "validity.thatscaptaintoyou.com", "stc.iqiyipic.com", "s14.cnzz.com", "sb.scorecardresearch.com", "js.cndns.com", "datax.baidu.com", "assets.growingio.com"];
             for (const BlackSite of BlackList) {
                 if (host == BlackSite) {
@@ -46,14 +47,15 @@ chrome.webRequest.onBeforeRequest.addListener(
             return false
         }
 
-        const mainDomain = GetMainDomain(initiator); //浏览器状态栏的主域名
-        const targetHost = GetHostAndPath(url)[0]; //跨域或本域访问的目标主机
-        const targetPath = GetHostAndPath(url)[1]; //跨域或本域访问的目标路径
-        const targetDomain = GetMainDomain(targetHost) //目标主域名
+        var mainDomain = get_domain(initiator); //发起者的主域名
+        var targetHost = GetHostAndPath(url)[0]; //跨域或本域访问的目标主机
+        var targetPath = GetHostAndPath(url)[1]; //跨域或本域访问的目标路径
+        var targetDomain = get_domain(url) //目标主域名
 
-        const WhiteList = ['baidu.com', 'qq.com', 'csdn.net', 'weibo.com', 'cnblogs.com','aliyun.com','ctrip.com','weibo.cn','iqiyi.com','163.com','126.com','51cto.com','taobao.com','sogou.com','iteye.com','58.com','google.com','fofa.so','jd.com','tmall.com','github.io','github.com'] //白名单
-        for (const WhiteSite of WhiteList) {
-            if (mainDomain.includes(WhiteSite)) {
+        const WhiteList = ['baidu.com', 'qq.com', 'csdn.net', 'weibo.com', 'cnblogs.com','aliyun.com','ctrip.com','weibo.cn','iqiyi.com','163.com','126.com','51cto.com','taobao.com','sogou.com','iteye.com','58.com','google.com','fofa.so','jd.com','tmall.com','github.io','github.com','sina.com.cn','mi.com'] //白名单
+        for (var WhiteSite of WhiteList) {
+            if (mainDomain == WhiteSite) {
+                console.log('命中白名单'+mainDomain);
                 return;
             }
         }
