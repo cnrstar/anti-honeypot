@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=300, height=150">
     <title>蜜罐检测插件</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container {
+            width: 300px;
+            height: 150px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #counter {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        #status {
+            margin: 10px 0;
+        }
+        a {
+            color: #06c;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        #toggleButton {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-
 <body>
-    <a href="https://github.com/cnrstar/anti-honeypot">V1.01</a>
+    <div id="container">
+        <h1>蜜罐检测插件</h1>
+        <div id="counter">已拦截蜜罐数量: 0</div>
+        <button id="toggleButton">启动插件</button>
+        <div id="status">当前状态: 已启动</div>
+        <a href="https://github.com/cnrstar/anti-honeypot">版本 V1.01</a>
+    </div>
+    <script src="popup.js"></script>
 </body>
-
 </html>

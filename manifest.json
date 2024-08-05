@@ -1,15 +1,15 @@
 {
-    "name": "Anti-HoneyPot[By-4dogs.cn]",
-    "version": "1.0.1",
+    "name": "Anti-HoneyPot[By-MegaVector]",
+    "version": "1.0.2",
     "manifest_version": 2,
     "description": "",
     "icons": {
         "128": "/img/logo.png"
-    },
+      },      
     "browser_action": {
 		"default_popup": "popup.html",
-        "default_title": "Anti-HoneyPot[By-4dogs.cn]",
-        "default_icon": "/img/logo.png"
+        "default_title": "Anti-HoneyPot[By-MegaVector]",
+        "default_icon": "./img/logo.png"
     },
     "background": {
         "persistent": true,
